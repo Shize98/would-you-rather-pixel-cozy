@@ -1,48 +1,125 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Would You Rather - Pixel Cozy</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <style>
-    body {
-      background-color: #fce4ec;
-      font-family: 'Press Start 2P', cursive;
-      text-align: center;
-      color: #880e4f;
-      padding: 2rem;
-      background-image: url('pixel-bg.png');
-      background-size: cover;
-    }
-    .welcome {
-      font-size: 1.25rem;
-      margin-top: 50px;
-    }
-    .heart {
-      font-size: 2rem;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
-    .footer {
-      margin-top: 30px;
-      font-size: 0.75rem;
-      opacity: 0.7;
-    }
-  </style>
-</head>
-<body>
-  <h1 class="heart">❤</h1>
-  <div class="welcome">Welcome to Our Cozy Game</div>
-  <p class="footer">I love you, Ksyu.</p>
-  <audio autoplay loop>
-    <source src="omori-music.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Would You Rather - Pixel Edition</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #fde7f3;
+        font-family: "Press Start 2P", cursive;
+        text-align: center;
+        padding: 2rem;
+        color: #880e4f;
+      }
+      .hidden {
+        display: none;
+      }
+      button {
+        background-color: #f8bbd0;
+        border: 2px solid #ad1457;
+        color: #880e4f;
+        font-family: "Press Start 2P", cursive;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 2rem;
+      }
+      .question-box {
+        margin-top: 2rem;
+        border: 4px solid #f8bbd0;
+        background-color: #fce4ec;
+        padding: 2rem;
+        border-radius: 16px;
+      }
+      .option-button {
+        display: block;
+        margin: 10px auto;
+        padding: 10px;
+        width: 80%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="welcome">
+      <div style="font-size: 2rem;">💜</div>
+      <h1>Welcome to Our Cozy Game</h1>
+      <p>I love you, Ksyu.</p>
+      <button onclick="startGame()">Start Game</button>
+    </div>
+
+    <div id="game" class="hidden">
+      <div class="question-box">
+        <h2 id="question">Loading...</h2>
+        <button class="option-button" onclick="selectOption(0)">Option 1</button>
+        <button class="option-button" onclick="selectOption(1)">Option 2</button>
+        <p id="selectedText" style="margin-top: 1rem;"></p>
+      </div>
+    </div>
+
+    <script>
+      const questions = [
+        {
+          q: "Would you rather cuddle under a starry sky or during a thunderstorm?",
+          options: ["Starry sky", "Thunderstorm"],
+        },
+        {
+          q: "Would you rather have a surprise trip planned for us or plan one together?",
+          options: ["Surprise trip", "Plan together"],
+        },
+        {
+          q: "Would you rather relive one special moment with me or fast forward to our future together?",
+          options: ["Relive moment", "Fast forward"],
+        },
+        {
+          q: "Would you rather share a giant donut bed or a cinnamon-scented blanket?",
+          options: ["Donut bed", "Cinnamon blanket"],
+        },
+        {
+          q: "Would you rather time travel to the past or future with me?",
+          options: ["Past", "Future"],
+        },
+        {
+          q: "Would you rather be a cinnamon roll in a world of donuts or a donut in a world of cinnamon rolls?",
+          options: ["Cinnamon roll", "Donut"],
+        }
+      ];
+
+      let index = 0;
+
+      function startGame() {
+        document.getElementById("welcome").classList.add("hidden");
+        document.getElementById("game").classList.remove("hidden");
+        loadQuestion();
+      }
+
+      function loadQuestion() {
+        const q = questions[index];
+        document.getElementById("question").textContent = q.q;
+        const buttons = document.getElementsByClassName("option-button");
+        buttons[0].textContent = q.options[0];
+        buttons[1].textContent = q.options[1];
+        document.getElementById("selectedText").textContent = "";
+      }
+
+      function selectOption(choice) {
+        const q = questions[index];
+        document.getElementById("selectedText").textContent =
+          "You chose: " + q.options[choice] + " 💖";
+        index++;
+        if (index < questions.length) {
+          setTimeout(loadQuestion, 1500);
+        } else {
+          setTimeout(() => {
+            document.getElementById("question").textContent = "All done! Hope you smiled 😊";
+            document.querySelectorAll(".option-button").forEach(btn => btn.style.display = 'none');
+            document.getElementById("selectedText").textContent = "I love you the mostest 💕";
+          }, 1500);
+        }
+      }
+    </script>
+  </body>
 </html>
