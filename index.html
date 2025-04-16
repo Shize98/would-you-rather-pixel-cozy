@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Would You Rather - Pixel Cozy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fce4ec;
+      font-family: 'Press Start 2P', cursive;
+      text-align: center;
+      color: #880e4f;
+      padding: 2rem;
+      background-image: url('pixel-bg.png');
+      background-size: cover;
+    }
+    .welcome {
+      font-size: 1.25rem;
+      margin-top: 50px;
+    }
+    .heart {
+      font-size: 2rem;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="heart">❤</h1>
+  <div class="welcome">Welcome to Our Cozy Game</div>
+  <p class="footer">I love you, Ksyu.</p>
+  <audio autoplay loop>
+    <source src="omori-music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</body>
+</html>
